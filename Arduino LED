@@ -1,0 +1,38 @@
+int led[3]= {15, 4, 17}; // port설정
+int gnd[3]= {2, 16, 5};  //port 설정
+
+void setup(){
+  for(int i=0;i<3;i++){
+    pinMode(led[i],OUTPUT);
+    digitalWrite(led[i],1); // 초기상태는 모두 다 HIGH 상태로 만든다....
+
+    pinMode(gnd[i],OUTPUT);
+    digitalWrite(gnd[i],0); // 초기상태는 모두 다 LOW 상태로 만든다....
+  }
+  Serial.begin(115200);
+}
+
+int i=0;
+
+void loop(){
+  static int j=30;
+
+  for(int k=0;k<3;k++){
+    digitalWrite(led[k],1);
+    delay(50);
+    digitalWrite(led[k],0);
+    delay(100);
+    for(int a=0;a<3;a++){
+      digitalWrite(led[a],1);
+      delay(100);
+      digitalWrite(led[a],0);
+      delay(50);
+      for(int b=0;b<3;b++){
+        digitalWrite(led[b],0);
+        delay(500);
+        digitalWrite(led[b],1);
+        delay(100);
+      }
+    }
+  }
+}
